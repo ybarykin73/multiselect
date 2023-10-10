@@ -1,6 +1,7 @@
 import React from "react"
 
 import SelectList from '../select-list/selectList'
+import SearchList from "../search-list/searchList"
 
 import './main.css'
 
@@ -36,23 +37,12 @@ const Main = () => {
             <div className="main__header">
                 <SelectList list={select} />
             </div>
-
             <input className="main__input" type="text" onChange={change} />
-            <ul className="main__list">
-                {
-                    list.map(item => (
-                        <li 
-                            className="main__list-item" 
-                            key={item.id}
-                        >
-                            <button onClick={ () => selectItem(item)}>
-                            {item.text}
-                            </button>
-                            
-                        </li>
-                    ))
-                }
-            </ul>
+            <SearchList 
+                list={list}
+                onClick={selectItem}
+            />
+
         </div>
     )
 }

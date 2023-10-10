@@ -1,0 +1,34 @@
+.search-list {
+    position: absolute;
+    background-color: #fff;
+    top: calc(100% - 10px);
+    left: 0;
+    right: 0;
+    box-shadow: 0 6px 5px 3px #ccc;
+    border-radius: 0 0 10px 10px;
+    padding: 0 15px;
+}
+
+.search-list__item {
+    border-bottom: 1px solid #696969;
+}
+
+.search-list__item:last-child {
+    border-bottom: none;
+}
+
+.search-list__button {
+    width: 100%;
+    font-size: 18px;
+    text-align: left;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color, padding-left .3s ease;
+}
+
+.search-list__button:hover {
+    background-color: #f3f3f3;
+    padding-left: 15px;
+}

@@ -4,6 +4,11 @@ const SelectList = (props) => {
     const {
         list,
     } = props
+
+    if (!list.length) {
+        return null
+    }
+    
     return (
         <ul className="select-list">
             {
