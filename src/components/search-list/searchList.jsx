@@ -19,9 +19,8 @@ const SearchList = (props) => {
                     <button
                         className='search-list__button'
                         onClick={() => onClick(item)}
-                    >
-                        {item.text}
-                    </button>
+                        dangerouslySetInnerHTML={{__html: item.text}} 
+                    />
                 </li>
             ))
         }

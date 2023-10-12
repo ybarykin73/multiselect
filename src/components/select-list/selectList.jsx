@@ -3,25 +3,33 @@ import './selectList.css'
 const SelectList = (props) => {
     const {
         list,
+        clearList
     } = props
-
-    if (!list.length) {
-        return null
-    }
     
     return (
-        <ul className="select-list">
+        <div className="select-block">
+            <ul className="select-list">
+                {
+                    list.map(item => (
+                        <li 
+                            className='select-list__item' 
+                            key={item.id}
+                        >
+                            {item.text}
+                        </li>
+                    ))
+                }
+            </ul>
             {
-                list.map(item => (
-                    <li 
-                        className='select-list__item' 
-                        key={item.id}
-                    >
-                        {item.text}
-                    </li>
-                ))
+                !!list.length &&
+                <button 
+                    className='select-block__clear-button'
+                    onClick={clearList}
+                >
+                    Очистить список
+                </button>
             }
-        </ul>
+        </div>
     )
 }
 

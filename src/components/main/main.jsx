@@ -3,46 +3,56 @@ import React from "react"
 import SelectList from '../select-list/selectList'
 import SearchList from "../search-list/searchList"
 
+import Data from '../list.json'
 import './main.css'
 
 const Main = () => {
-    const List = [
-        {id: 1, text: 'Ульяновск'},
-        {id: 2, text:'Абаза'},
-        {id: 3, text:'Балахна'},
-        {id: 4, text:'Вичуга'},
-        {id: 5, text:'Гдов'},
-        {id: 6, text:'Данилов'},
-        {id: 7, text:'Ейск'},
-        {id: 8, text:'Жуков'},
-        {id: 9, text:'Зарайск'},
-        {id: 10, text:'Ижевск'},
-    ]
-
-    const [text, setText] = React.useState('')
+    const [inputValue, setInputValue] = React.useState('')
     const [select, setSelect] = React.useState([])
-    const [list, setList] = React.useState(List)
+    const [list, setList] = React.useState(Data.List)
+    const [filterList, setFilterList] = React.useState(Data.List)
 
-    const change = (e) => {
-        // setText(e.target.value)
+    const clearSelectList = () => {
+        setSelect([])
+        setList(Data.List)
+        setFilterList(Data.List)
+    }
+
+    const change = (value) => {
+        setInputValue(value)
+        setFilterList(list.map(item => {
+                    const newText = item.text.replace(value, '<b>' + value + '</b>')
+                    return {...item, text: newText}
+                } 
+            )
+        )
     }
 
     const selectItem = (item) => {
-        setSelect([...select, {id: item.id, text: item.text}])
-        setList(list.filter(a => a.id !== item.id))
+        setSelect([...select, ...Data.List.filter(a => a.id === item.id)])
+        setList([...list.filter(a => a.id !== item.id)])
+        setFilterList(filterList.filter(a => a.id !== item.id))
+        setInputValue('')
     }
 
     return (
         <div className="main">
-            <div className="main__header">
-                <SelectList list={select} />
-            </div>
-            <input className="main__input" type="text" onChange={change} />
-            <SearchList 
-                list={list}
-                onClick={selectItem}
+            <SelectList 
+                list={select}
+                clearList={clearSelectList}
             />
-
+            <div className="main__search-block">
+                <input 
+                    className="main__input" 
+                    type="text" 
+                    onChange={(e) => change(e.target.value)}
+                    value={inputValue}
+                />
+                <SearchList 
+                    list={filterList}
+                    onClick={selectItem}
+                />
+            </div>
         </div>
     )
 }

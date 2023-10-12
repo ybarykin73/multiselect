@@ -1,12 +1,10 @@
 .search-list {
-    position: absolute;
-    background-color: #fff;
-    top: calc(100% - 10px);
-    left: 0;
-    right: 0;
-    box-shadow: 0 6px 5px 3px #ccc;
-    border-radius: 0 0 10px 10px;
-    padding: 0 15px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .search-list__item {
@@ -32,3 +30,4 @@
     background-color: #f3f3f3;
     padding-left: 15px;
 }
+
