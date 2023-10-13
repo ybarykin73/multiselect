@@ -20,7 +20,11 @@ const Main = () => {
 
     const change = (value) => {
         setInputValue(value)
-        setFilterList(list.map(item => {
+        const itemInclude = list.filter(item => {
+            return item.text.toLowerCase().includes(value.toLowerCase())
+        })
+
+        setFilterList(itemInclude.map(item => {
                     const newText = item.text.replace(value, '<b>' + value + '</b>')
                     return {...item, text: newText}
                 } 
