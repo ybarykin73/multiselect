@@ -4,11 +4,11 @@ import './App.css';
 
 function App() {
   return (
-    <React.StrictMode>
-      <div className="App">
-        <Main />
-      </div>
-    </React.StrictMode>
+  <React.StrictMode>
+    <div className="App">
+    <Main />
+    </div>
+  </React.StrictMode>
   );
 }
 

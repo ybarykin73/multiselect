@@ -1,7 +1,7 @@
 import React from "react"
 
-import SelectList from '../select-list/selectList'
-import SearchList from "../search-list/searchList"
+import SelectList from '../subcomponents/select-list/selectList'
+import SearchList from "../subcomponents/search-list/searchList"
 
 import Data from '../list.json'
 import './main.css'
@@ -34,7 +34,7 @@ const Main = () => {
   const selectItem = (item) => {
     setSelect([...select, ...Data.City.filter(a => a.id === item.id)])
     setList([...list.filter(a => a.id !== item.id)])
-    setFilterList(filterList.filter(a => a.id !== item.id))
+    setFilterList([...list.filter(a => a.id !== item.id)])
     setInputValue('')
   }
 
