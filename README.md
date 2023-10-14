@@ -1,9 +1,5 @@
-# Getting Started with Create React App
+# Верстка помпонента Мультиселект
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Описание работы
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
+Компонент получает список в котором работает живой поиск с подсветкой набранного строки, по клику выбранный элемент добавляется в список выбранного 
