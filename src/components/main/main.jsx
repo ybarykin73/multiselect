@@ -8,19 +8,19 @@ import './main.css'
 
 const Main = () => {
   const [inputValue, setInputValue] = React.useState('')
-  const [select, setSelect] = React.useState([])
-  const [list, setList] = React.useState(Data.City)
+  const [selectList, setSelectList] = React.useState([])
+  const [originalList, setOriginalList] = React.useState(Data.City)
   const [filterList, setFilterList] = React.useState(Data.City)
 
   const clearSelectList = () => {
-    setSelect([])
-    setList(Data.City)
+    setSelectList([])
+    setOriginalList(Data.City)
     setFilterList(Data.City)
   }
 
-  const change = (value) => {
+  const changeSearchInput = (value) => {
     setInputValue(value)
-    const itemInclude = list.filter(item => {
+    const itemInclude = originalList.filter(item => {
       return item.text.toLowerCase().includes(value.toLowerCase())
     })
 
@@ -32,23 +32,23 @@ const Main = () => {
   }
 
   const selectItem = (item) => {
-    setSelect([...select, ...Data.City.filter(a => a.id === item.id)])
-    setList([...list.filter(a => a.id !== item.id)])
-    setFilterList([...list.filter(a => a.id !== item.id)])
+    setSelectList([...selectList, ...Data.City.filter(a => a.id === item.id)])
+    setOriginalList([...originalList.filter(a => a.id !== item.id)])
+    setFilterList([...originalList.filter(a => a.id !== item.id)])
     setInputValue('')
   }
 
   return (
     <div className="main">
       <SelectList 
-        list={select}
+        list={selectList}
         clearList={clearSelectList}
       />
       <div className="main__search-block">
         <input 
           className="main__input" 
           type="text" 
-          onChange={(e) => change(e.target.value)}
+          onChange={(e) => changeSearchInput(e.target.value)}
           value={inputValue}
         />
         <SearchList 
