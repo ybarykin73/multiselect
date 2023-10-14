@@ -3,19 +3,19 @@ import React from "react"
 import SelectList from '../subcomponents/select-list/selectList'
 import SearchList from "../subcomponents/search-list/searchList"
 
-import Data from '../list.json'
 import './main.css'
 
-const Main = () => {
+const Main = ({list}) => {
+
   const [inputValue, setInputValue] = React.useState('')
   const [selectList, setSelectList] = React.useState([])
-  const [originalList, setOriginalList] = React.useState(Data.City)
-  const [filterList, setFilterList] = React.useState(Data.City)
+  const [originalList, setOriginalList] = React.useState(list.City)
+  const [filterList, setFilterList] = React.useState(list.City)
 
   const clearSelectList = () => {
     setSelectList([])
-    setOriginalList(Data.City)
-    setFilterList(Data.City)
+    setOriginalList(list.City)
+    setFilterList(list.City)
   }
 
   const changeSearchInput = (value) => {
@@ -32,7 +32,7 @@ const Main = () => {
   }
 
   const selectItem = (item) => {
-    setSelectList([...selectList, ...Data.City.filter(a => a.id === item.id)])
+    setSelectList([...selectList, ...list.City.filter(a => a.id === item.id)])
     setOriginalList([...originalList.filter(a => a.id !== item.id)])
     setFilterList([...originalList.filter(a => a.id !== item.id)])
     setInputValue('')
